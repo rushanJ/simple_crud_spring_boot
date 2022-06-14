@@ -15,10 +15,13 @@ public class ItemController {
 
     private ItemService itemService;
 
+
     public ItemController(ItemService itemService) {
         super();
         this.itemService = itemService;
     }
+
+
 
     @PostMapping
     public ResponseEntity <Item> saveItem(  @RequestBody Item item){
@@ -44,6 +47,13 @@ public class ItemController {
         itemService.deleteItem(itemId);
         return  new ResponseEntity<String>("Item Deleted Succesfully!", HttpStatus.OK);
     }
+
+    @GetMapping("/search")
+    public List<Item> filterItems(@RequestParam ("name") String name ) {
+
+        return itemService.filterItems("name="+name);
+    }
+
 
 
 

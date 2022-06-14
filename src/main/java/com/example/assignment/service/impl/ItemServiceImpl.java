@@ -5,9 +5,9 @@ import com.example.assignment.exception.ResourceNotFoundException;
 import com.example.assignment.model.Item;
 import com.example.assignment.repository.ItemRepository;
 import com.example.assignment.service.ItemService;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
-import javax.management.relation.RelationServiceNotRegisteredException;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,7 +43,6 @@ public class ItemServiceImpl implements ItemService {
         existingItem.setExpireDate(item.getExpireDate());
         existingItem.setPrescriptionRequired(item.getPrescriptionRequired());
         existingItem.setQty(item.getQty());
-
         itemRepository.save(existingItem);
         return existingItem;
     }
@@ -51,8 +50,15 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public void deleteItem(long id) {
         Item existingItem= itemRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Item " ,"Id",id));
-
         itemRepository.deleteById(existingItem.getId());
+
+
+    }
+
+    @Override
+    public List<Item> filterItems(String query) {
+
+        return itemRepository.findByQuery(query);
     }
 
 }

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pharmacy Inventory System </title>
+</head>
+<body>
+<a href="create" >Create</a>
+<table>
+    <thead>
+    <td>
+        <th>id</th>
+    <th>name</th>
+    <th>Description</th>
+    <th>Expire Date</th>
+    <th>Qty</th>
+    <th>Prescription </th>
+    <th>Actions </th>
+    </td>
+    </thead>
+    <tbody>
+        <th:block th:each="item:${items}">
+            <tr>
+                <td>[[${item.id}]] </td>
+                <td>[[${item.name}]] </td>
+                <td>[[${item.description}]] </td>
+                <td>[[${item.expireDate}]] </td>
+                <td>[[${item.qty}]] </td>
+                <td>[[${item.prescriptionRequired}]] </td>
+                <td><a th:href="@{'./editItem/'+${item.id}} "> Edit </a><a th:href="@{'./deleteItem/'+${item.id}}"> Delete </a> </td>
+
+            </tr>
+        </th:block>
+    </tbody>
+</table>
+</body>
+</html>

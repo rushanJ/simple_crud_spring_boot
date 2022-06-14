@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pharmacy Inventory System </title>
+</head>
+<body>
+<h1>[[${title}]]</h1>
+<form th:action="@{/item/save}" method="POST" modelAttribute="create">
+    <input type="text"  th:field="${item.id}" class="form-control" placeholder="Enter email">
+    <div class="form-group">
+        <label for="email">Name:</label>
+        <input type="text"  th:field="${item.name}" class="form-control" placeholder="Enter name" id="email">
+    </div>
+    <div class="form-group">
+        <label for="comment">Description:</label>
+        <textarea class="form-control"  th:field="${item.description}" rows="5" id="comment"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="email">Expire Date:</label>
+        <input type="date" class="form-control"  th:field="${item.expireDate}" placeholder="Enter email" id="eDate">
+    </div>
+    <div class="form-group">
+        <label for="email">Qty:</label>
+        <input type="number" class="form-control"  th:field="${item.qty}" placeholder="Enter email" id="qty">
+    </div>
+    <div class="form-group form-check">
+        <label class="form-check-label">
+            <input class="form-check-input" type="checkbox"  th:field="${item.prescriptionRequired}" value="REQUIRED"> Prescription Required
+        </label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</body>
+</html>
